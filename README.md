@@ -39,13 +39,13 @@ This tool automates creation of Veracode application profiles, artifact uploads,
 ### Autoscan mode (default)
 Prescan with `auto_scan=true`. Scans auto-start if module selection is not required:
 ```bash
-python vc_bulk_upload.py   --artifacts-dir /path/to/builds   --mode autoscan
+python script.py   --artifacts-dir /path/to/builds   --mode autoscan
 ```
 
 ### Deterministic mode
 Prescan → poll → beginscan (guarantees scans start even for new multi-module apps):
 ```bash
-python vc_bulk_upload.py   --artifacts-dir /path/to/builds   --glob "*.zip"   --mode deterministic   --poll-interval 60   --verbose
+python script.py   --artifacts-dir /path/to/builds   --glob "*.zip"   --mode deterministic   --poll-interval 60   --verbose
 ```
 
 
@@ -71,4 +71,5 @@ python vc_bulk_upload.py   --artifacts-dir /path/to/builds   --glob "*.zip"   --
 ## Best Practices
 - Use **deterministic mode** for new apps or multi-module builds to guarantee scan start.  (Takes longer because of polling, keep in mind that pre-scan can take a couple of minutes.)
 - Use **autoscan mode** for one-module apps or when modules were previously selected.  
+
 - Always use `--use-uploadlarge` for artifacts >200MB.
